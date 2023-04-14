@@ -50,7 +50,7 @@ $(document).ready(function(){
 
     // owl carousel script
     $('.carousel').owlCarousel({
-        margin: 20,
+        margin: 15,
         loop: true,
         autoplay: true,
         autoplayTimeOut: 2000,
@@ -66,6 +66,14 @@ $(document).ready(function(){
             },
             1000:{
                 items: 3,
+                nav: false
+            },
+            1600:{
+                items: 4,
+                nav: false
+            },
+            2000:{
+                items: 5,
                 nav: false
             }
         }
