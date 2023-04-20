@@ -645,7 +645,7 @@ background-color: white;
 .publication .carousel .card{
     background: #222;
     border-radius: 6px;
-    padding: 10px 15px;
+    padding: 3px 8px;
     text-align: center;
     overflow: hidden;
     transition: all 0.3s ease;
