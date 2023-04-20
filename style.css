@@ -169,11 +169,10 @@ section .title::after{
 /* home section styling */
 .home{
     display: flex;
-    background: url("images/close-up-hand-holding-futuristic-screen.jpg") no-repeat center;
-    
+    background: url("images/close-up-hand-holding-futuristic-screen.jpg") no-repeat  center;
     resize: both;
     color: crimson;
-   background-size: cover;
+   background-size: auto 115%;
     background-position: center;
     position: relative;
     background-attachment: fixed;
@@ -625,6 +624,7 @@ background-color: white;
     display: flex;
     background: url("images/Pubs.png") no-repeat center;
     resize: both;
+    overflow: scroll;
     color: crimson;
     background-size: cover;
     background-position: center;
@@ -645,7 +645,7 @@ background-color: white;
 .publication .carousel .card{
     background: #222;
     border-radius: 6px;
-    padding: 25px 35px;
+    padding: 20px 30px;
     text-align: center;
     overflow: hidden;
     transition: all 0.3s ease;
