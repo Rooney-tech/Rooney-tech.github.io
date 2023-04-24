@@ -621,7 +621,7 @@ background-color: white;
 
 
 .publication{
-    display: flex;
+    display: fixed;
     background: url("images/Pubs.png") no-repeat center;
     resize: both;
     overflow: scroll;
@@ -645,7 +645,7 @@ background-color: white;
 .publication .carousel .card{
     background: #222;
     border-radius: 6px;
-    padding: 25px 20px;
+    padding: 20px 5px;
     text-align: center;
     overflow: hidden;
     transition: all 0.3s ease;
