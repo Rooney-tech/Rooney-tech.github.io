@@ -622,7 +622,7 @@ background-color: white;
 
 .publication{
     display: fixed;
-    background: yellowgreen;/*url("images/Pubs.png") no-repeat center;*/
+    background: url("images/rey-seven-_nm_mZ4Cs2I-unsplash.jpg") no-repeat center;
     resize: both;
     overflow: scroll;
     color: crimson;
