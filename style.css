@@ -629,7 +629,7 @@ background-color: white;
     background-size: cover;
     background-position: center;
     position: relative;
-    background-attachment: float;
+    background-attachment: fixed;
 }
 
 
