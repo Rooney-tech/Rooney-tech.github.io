@@ -622,7 +622,7 @@ background-color: white;
 
 .publication{
     display: fixed;
-    background: url("images/Pubs.png") no-repeat center;
+    background: yellowgreen;/*url("images/Pubs.png") no-repeat center;*/
     resize: both;
     overflow: scroll;
     color: crimson;
@@ -645,7 +645,7 @@ background-color: white;
 .publication .carousel .card{
     background: #222;
     border-radius: 6px;
-    padding: 20px 5px;
+    padding: 5px 5px;
     text-align: center;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -694,7 +694,7 @@ background-color: white;
     transition: all 0.3s ease;
 }
 .owl-dot.active{
-    width: 30px;
+    width: 50px;
     border-radius: 14px;
 }
 .owl-dot.active,
