@@ -169,10 +169,10 @@ section .title::after{
 /* home section styling */
 .home{
     display: flex;
-    background: url("images/close-up-hand-holding-futuristic-screen.jpg") no-repeat  center;
+    background: url("images/big-data-analytics-report-infographic-graph-chart-abstract-background-distribution-data-business-categories-271246199.jpg") no-repeat  center;
     resize: both;
     color: crimson;
-   background-size: auto 115%;
+   background-size:cover;
     background-position: center;
     position: relative;
     background-attachment: fixed;
