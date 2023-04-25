@@ -354,7 +354,7 @@ section .title::after{
     height: 10px;
     background-color: crimson;
     border-radius: 50%;
-    left:-6.5px;
+    left:-6.8px;
     top: 28px;
     transition: .5s;
 }
