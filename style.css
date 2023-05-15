@@ -449,6 +449,12 @@ section .title::after{
     font-weight: bold;
     color: white;
 }
+.portfolio .frame{
+    padding-bottom: 56.25%;
+    position: relative;
+    display: block;
+    width: 100%;
+}
 
 .portfolio .textat:hover a{
 color:crimson;
