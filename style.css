@@ -7,7 +7,7 @@
     box-sizing: border-box;
     text-decoration: none;
 }
-html{
+html,body{
     scroll-behavior: smooth;
     height: 100%;
     width: 100%;
@@ -459,6 +459,7 @@ section .title::after{
     padding-bottom: 56.25%;
     position: relative;
     display: flex;
+    height: 100%;
     width: 100%;
 }
 
