@@ -41,6 +41,7 @@ section{
     max-width: 1300px;
     padding: 0 80px;
     margin: auto;
+    height: fit-content;
 }
 .about, .timeline, .portfolio, .skills, .publication, .contact, footer{
     font-family: 'Poppins', sans-serif;
