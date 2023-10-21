@@ -38,10 +38,9 @@ section{
     padding: 100px 0;
 }
 .max-width{
-    max-width: fit-content;
+    max-width:890;
     padding: 0 80px;
     margin: auto;
-    max-height: fit-content;
 }
 .about, .timeline, .portfolio, .skills, .publication, .contact, footer{
     font-family: 'Poppins', sans-serif;
@@ -459,10 +458,10 @@ section .title::after{
 }
 .portfolio .frame{
     padding-bottom: 56.25%;
-    position: relative;
+    position:-ms-page;
     display: flex;
     height: 100%;
-    width: 100%;
+    max-width: 690px;
 }
 
 .portfolio .textat:hover a{
