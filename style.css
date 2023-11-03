@@ -462,8 +462,8 @@ section .title::after{
     padding-bottom: 56.25%;
     position:-ms-pages;
     display:block;
-    height: 100%;
-    max-width: 690px;
+    height: 100dvh;
+    width: 100dvw;
 }
 
 .portfolio .textat:hover a{
