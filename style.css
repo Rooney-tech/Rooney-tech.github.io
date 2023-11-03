@@ -921,6 +921,7 @@ footer span a:hover{
     }
     .portfolio .serv-content .card{
         width: 100%;
+        min-height: fit-content;
     }
 }
 
