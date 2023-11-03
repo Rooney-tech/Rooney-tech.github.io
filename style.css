@@ -458,7 +458,7 @@ section .title::after{
 }
 .portfolio .frame{
     padding-bottom: 56.25%;
-    position:-ms-page;
+    position:-ms-pages;
     display: flex;
     height: 100%;
     max-width: 690px;
