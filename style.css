@@ -460,10 +460,11 @@ section .title::after{
 }
 .portfolio .frame{
     padding-bottom: 56.25%;
-    position:-ms-pages;
+    position:-webkit-sticky;
+    position: sticky;
     display:block;
     height: 100dvh;
-    width: 100dvw;
+    width: 100%;
 }
 
 .portfolio .textat:hover a{
