@@ -922,7 +922,7 @@ footer span a:hover{
     }
     .portfolio .serv-content .card{
         width: 100%;
-        height: auto;
+        height: fit-content;
     }
 }
 
