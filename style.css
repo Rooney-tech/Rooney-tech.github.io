@@ -14,7 +14,7 @@ html,body{
 }
 iframe{
     width: 100%;
-    height: auto;
+    height: 100dvh;
     margin: 0;
 }
 
@@ -922,7 +922,7 @@ footer span a:hover{
     }
     .portfolio .serv-content .card{
         width: 100%;
-        height: fit-content;
+        height: 100%;
     }
 }
 
