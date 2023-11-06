@@ -900,7 +900,7 @@ footer span a:hover{
     }
     .skills .serv-content .card{
         width: calc(50% - 10px);
-        margin-bottom: 20px;
+        margin-bottom: 5px;
     }
     .skills .skills-content .column,
     .contact .contact-content .column{
