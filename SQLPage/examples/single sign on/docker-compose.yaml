@@ -1,0 +1,41 @@
+# This file lets you run the example with a single command: docker-compose up
+# Download docker here: https://www.docker.com/products/docker-desktop
+#
+# This docker compose starts two services:
+# 1. a SQLPage service that serves a simple page with a login button
+# 2. a Keycloak service that acts as an OpenID Connect provider (manages users and authentication)
+#
+
+services:
+  sqlpage:
+    image: lovasoa/sqlpage:main # Use the latest development version of SQLPage
+    volumes:
+      - .:/var/www
+      - ./sqlpage:/etc/sqlpage
+    environment:
+      # OIDC configuration
+      - OIDC_AUTHORIZATION_ENDPOINT=http://localhost:8181/realms/sqlpage_demo/protocol/openid-connect/auth
+      - OIDC_TOKEN_ENDPOINT=http://localhost:8181/realms/sqlpage_demo/protocol/openid-connect/token
+      - OIDC_USERINFO_ENDPOINT=http://localhost:8181/realms/sqlpage_demo/protocol/openid-connect/userinfo
+      - OIDC_END_SESSION_ENDPOINT=http://localhost:8181/realms/sqlpage_demo/protocol/openid-connect/logout
+      - OIDC_CLIENT_ID=sqlpage
+      - OIDC_CLIENT_SECRET=qiawfnYrYzsmoaOZT28rRjPPRamfvrYr
+
+      # CAS (central authentication system) configuration
+      # (you can ignore this if you're only using OpenID Connect)
+      - CAS_ROOT_URL=http://localhost:8181/realms/sqlpage_demo/protocol/cas
+
+      # SQLPage configuration
+      - RUST_LOG=sqlpage=debug
+    network_mode: host
+
+  keycloak:
+    build:
+      context: .
+      dockerfile: keycloak.Dockerfile
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    volumes:
+      - ./keycloak-configuration.json:/opt/keycloak/data/import/realm.json
+    network_mode: host

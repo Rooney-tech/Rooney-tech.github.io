@@ -1,0 +1,57 @@
+<div class="card my-3 {{class}}" {{#if id}}id="{{id}}"{{/if}}>
+  <div class="card-body">
+    <h3 class="card-title">{{title}}</h3>
+    <div
+      class="leaflet"
+      style="height: {{default height 350}}px;"
+      {{~#if latitude includeZero=true}} data-center="{{latitude}},{{longitude}}"{{/if}}
+      data-zoom="{{default zoom 5}}"
+      data-attribution="{{default attribution '© OpenStreetMap'}}"
+      {{~#if (ne tile_source false)}} data-tile_source="{{default tile_source 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}}"{{/if}}
+      data-max_zoom="{{default max_zoom 18}}"
+      data-pre-init="map"
+    >
+      <div class="d-flex justify-content-center h-100 align-items-center">
+        <div
+          class="spinner-border"
+          role="status"
+          style="width: 3rem; height: 3rem;"
+        >
+          <span class="visually-hidden">Loading map...</span>
+        </div>
+        <div class="d-none" hidden>
+          {{~#each_row~}}
+            <div class="marker"
+              {{~#if latitude includeZero=true}} data-coords="{{latitude}},{{longitude}}"{{/if}}
+              {{~#if color}} data-color="{{color}}"{{/if}}
+              {{~#if size}} data-size="{{size}}"{{/if}}
+              {{~#if link}} data-link="{{link}}"{{/if}}
+              {{~#if geojson}} data-geojson="
+                  {{~#if (eq (typeof geojson) 'string')}}{{geojson}}
+                  {{~else~}}{{stringify geojson}}
+                  {{~/if~}}
+              "{{/if~}}
+            >
+              <h3>
+                {{~#if icon~}}
+                    <span class="mapicon">{{~icon_img icon size~}}</span>
+                {{~/if~}}
+                {{~#if link~}}
+                  <a href="{{link}}">{{title}}</a>
+                {{~else~}}
+                  {{title}}
+                {{~/if~}}
+              </h3>
+              <div class="description">
+                {{~#if description}}<p>{{description}}</p>{{/if~}}
+                {{~#if description_md~}}
+                  {{{markdown description_md}}}
+                {{~/if~}}
+              </div>
+            </div>
+          {{~/each_row~}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

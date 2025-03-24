@@ -1,0 +1,1 @@
+select 'text' as component, sqlpage.exec('echo', 'It', $thisisnull, 'works', '!') as contents;

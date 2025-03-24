@@ -1,0 +1,1 @@
+SELECT 'redirect' as component, 'get started.sql' as link;

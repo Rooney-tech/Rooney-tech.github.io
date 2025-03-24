@@ -1,0 +1,86 @@
+on:
+  workflow_dispatch: {}
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
+
+name: Create Release
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build sqlpage binaries
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        # Use an older ubuntu to compile with an older glibc
+        os: [macos-latest, windows-latest, ubuntu-20.04]
+        include:
+          - os: windows-latest
+            binary_path: target/superoptimized/sqlpage.exe
+          - os: macos-latest
+            binary_path: target/superoptimized/sqlpage
+          - os: ubuntu-20.04
+            binary_path: target/superoptimized/sqlpage
+    steps:
+      - run: rustup toolchain install stable --profile minimal
+      - uses: actions/checkout@v4
+      - name: Set up cargo cache
+        uses: Swatinem/rust-cache@dd05243424bd5c0e585e4b55eb2d7615cdd32f1f
+      - run: cargo build --profile superoptimized --locked
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sqlpage ${{ matrix.os }}
+          path: ${{ matrix.binary_path }}
+  build-aws:
+    name: Build AWS Lambda Serverless zip image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t sqlpage-lambda-builder . -f lambda.Dockerfile --target builder
+      - run: docker run sqlpage-lambda-builder cat deploy.zip > sqlpage-aws-lambda.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sqlpage aws lambda serverless image
+          path: sqlpage-aws-lambda.zip
+  create_release:
+    name: Create Github Release
+    needs: [build, build-aws]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+      - run: |
+          rm -rf sqlpage/templates/*.handlebars;
+          chmod +x sqlpage*/sqlpage;
+          mv 'sqlpage macos-latest/sqlpage' sqlpage.bin;
+          tar --create --file sqlpage-macos.tgz --gzip sqlpage.bin sqlpage/sqlpage.json sqlpage/migrations sqlpage/templates sqlpage/sqlpage.json;
+          mv 'sqlpage ubuntu-20.04/sqlpage' sqlpage.bin;
+          tar --create --file sqlpage-linux.tgz --gzip sqlpage.bin sqlpage/migrations sqlpage/templates sqlpage/sqlpage.json;
+          mv 'sqlpage windows-latest/sqlpage.exe' .
+          zip -r sqlpage-windows.zip sqlpage.exe sqlpage/migrations sqlpage/templates sqlpage/sqlpage.json;
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+          draft: false
+          prerelease: ${{ contains(github.ref_name, 'beta') }}
+          files: |
+            sqlpage-windows.zip
+            sqlpage-linux.tgz
+            sqlpage-macos.tgz
+            sqlpage aws lambda serverless image/sqlpage-aws-lambda.zip
+  cargo_publish:
+    name: Publish to crates.io
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up cargo cache
+        uses: Swatinem/rust-cache@dd05243424bd5c0e585e4b55eb2d7615cdd32f1f
+      - name: Publish to crates.io
+        run: cargo publish --token ${{ secrets.CRATES_IO_TOKEN }}

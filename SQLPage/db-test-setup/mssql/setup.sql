@@ -1,0 +1,16 @@
+IF DB_ID('sqlpage') IS NULL
+    BEGIN
+        CREATE DATABASE sqlpage;
+    END;
+GO
+
+USE sqlpage;
+GO
+
+CREATE LOGIN root WITH PASSWORD = 'Password123!';
+CREATE USER root FOR LOGIN root;
+GO
+
+GRANT CREATE TABLE TO root;
+GRANT ALTER, DELETE, INSERT, SELECT, UPDATE ON SCHEMA::dbo TO root;
+GO

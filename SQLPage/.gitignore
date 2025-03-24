@@ -1,0 +1,12 @@
+/target
+sqlpage.db
+.idea/
+*.mm_profdata
+docs/presentation-pgconf.html
+examples/inrap_badass/
+sqlpage/https/*
+x.sql
+xbed.sql
+**/sqlpage.bin
+node_modules/
+sqlpage/sqlpage.db

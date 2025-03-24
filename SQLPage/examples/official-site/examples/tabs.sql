@@ -1,0 +1,1 @@
+select 'redirect' as component, 'tabs/' as link;
