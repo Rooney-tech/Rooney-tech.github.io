@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /examples/authentication/basic_auth.sql
-Disallow: /cdn-cgi/l/email-protection
-Disallow: /sqlpage/
-Crawl-delay: 1

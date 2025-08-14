@@ -1,1 +1,0 @@
-select 'dynamic' as component; -- missing "properties" column

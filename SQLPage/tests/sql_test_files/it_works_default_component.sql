@@ -1,1 +1,0 @@
-select 'yes' as "It works !";

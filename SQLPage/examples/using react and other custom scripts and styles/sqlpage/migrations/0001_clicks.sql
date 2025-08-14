@@ -1,3 +1,0 @@
-CREATE TABLE clicks(
-    click_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
